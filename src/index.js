@@ -9,8 +9,11 @@ import {Provider} from "react-redux";
 import axios from "axios";
 
 
+//axios.defaults.baseUrl = "http://localhost:5000/api"
+axios.defaults.baseUrl = "https://task-management-api-l4cs.onrender.com/api"
 
-axios.defaults.baseUrl = "http://localhost:5000/api"
+
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <BrowserRouter>
