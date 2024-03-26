@@ -36,3 +36,12 @@
     transform: rotate(360deg);
   }
 }
+
+
+#main{
+  text-align: center;
+  background-image: url("https://images.photowall.com/products/60721/white-marble-3.jpg?h=699&q=85");
+  background-repeat: repeat;
+  height: 100vh;
+}
+

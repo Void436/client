@@ -2,7 +2,11 @@ import React, { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form';
 import { useSelector , useDispatch } from "react-redux";
 import { gettask , addtask , updatetask , deletetask } from '../redux/slices/todoSlice';
+import Button from 'react-bootstrap/Button';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import "./styles.css";
+
+
 
 const Home = () => {
 
@@ -25,29 +29,31 @@ const Home = () => {
 
     return (
         <>
+            <div id="mainn">
+                <form onSubmit={handleSubmit(onSubmit)}><br/><br/>
+                    <legend><strong>Add  a new task!</strong></legend> <br/><br/>
+                    <input type="text" placeholder="Add Title" {...register("title", {required: true})} /><br/><br/>
+                    <input type="text" placeholder="Description" {...register("desc", {required: true})} /><br/><br/>
+                    <Button variant="success" type="submit" >Submit</Button>{' '}<br/><br/>
+                </form>
+                
+                {isLoading && <p>loading...</p>}
+                {Array.isArray(taskList) && taskList.map(el => 
+                    <div>
+                        <p>{el.title}</p>
+                        <p>{el.desc}</p>
+                        
 
-            <form onSubmit={handleSubmit(onSubmit)}>
-                <input type="text" placeholder="Add Task" {...register("title", {required: true})} />
-                <input type="text" placeholder="Description" {...register("desc", {required: true})} />
-                <input type="submit" />
-            </form>
-            
-            {isLoading && <p>loading</p>}
-            {Array.isArray(taskList) && taskList.map(el => 
-                <div>
-                    <p>{el.title}</p>
-                    <p>{el.desc}</p>
-                    
-
-                    <button onClick={() => (visible.visibility==="Hidden") ? setvisible({visibility:"Visible"}): setvisible({visibility:"Hidden"})}>Edit</button>
-                    <div style={visible}>
-                        <input type="text" placeholder="Edit Task Title" onChange={handlechange} name="title"/> 
-                        <input type="text" placeholder="Edit Description" onChange={handlechange} name="desc"/>
-                        <button onClick={() => dispatch(updatetask({...updated,_id:el._id}))}>Updating</button>
+                        <Button variant="light" onClick={() => (visible.visibility==="Hidden") ? setvisible({visibility:"Visible"}): setvisible({visibility:"Hidden"})}>Edit</Button>{' '}<br/><br/>
+                        <div style={visible}>
+                            <input type="text" placeholder="New Title" onChange={handlechange} name="title"/><br/><br/>
+                            <input type="text" placeholder="Edit Description" onChange={handlechange} name="desc"/><br/><br/>
+                            <Button variant="info" onClick={() => dispatch(updatetask({...updated,_id:el._id}))}>Update</Button>{' '}<br/><br/>
+                        </div>
+                        <Button variant="danger" onClick={() => dispatch(deletetask(el))}>Delete</Button>{' '} <br/><br/>
                     </div>
-                    <button onClick={() => dispatch(deletetask(el))}>Delete</button>
-                </div>
-            )}
+                )}
+            </div>
         </>
     )
 }

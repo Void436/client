@@ -3,6 +3,8 @@ import { useForm } from 'react-hook-form';
 import { useSelector , useDispatch } from "react-redux";
 import { signup } from '../redux/slices/userSlice';
 import { useNavigate } from "react-router-dom";
+import Button from 'react-bootstrap/Button';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import "./styles.css";
 
 
@@ -24,15 +26,18 @@ const Register = () => {
 
     return (
         <>
-            <form onSubmit={handleSubmit(onSubmit)}>
-                <input type="text" placeholder="Name" {...register("name", {required: true, max: 20, min: 3})} />
-                <p className='error'>{errors.name && "This field is required!"}</p>
-                <input type="email" placeholder="Email" {...register("email", {required: true})} />
-                <p className='error'>{errors.email && "This email exist! Please try logging in."}</p>
-                <input type="password" placeholder="Password" {...register("password", {required: true})} />
-                <p className='error'>{errors.password && "Weak password!"}</p>
-                <input type="submit" />
-            </form>
+            <div id="mainn">
+                <form onSubmit={handleSubmit(onSubmit)}><br/>
+                    <legend><strong>Register & join us now!</strong></legend> <br/><br/>
+                    <input type="text" placeholder="Name" {...register("name", {required: true, max: 20, min: 3})} />
+                    <p className='error'>{errors.name && "This field is required!"}</p>
+                    <input type="email" placeholder="Email" {...register("email", {required: true})} />
+                    <p className='error'>{errors.email && "This email exist! Please try logging in."}</p>
+                    <input type="password" placeholder="Password" {...register("password", {required: true})} />
+                    <p className='error'>{errors.password && "Weak password!"}</p><br/>
+                    <Button variant="success" type="submit" >Submit</Button>{' '}<br/><br/>
+                </form>
+            </div>
         </>
     )
 }

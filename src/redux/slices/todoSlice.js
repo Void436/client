@@ -32,9 +32,9 @@ export const addtask = createAsyncThunk("task/addtask" , async( info , {rejectWi
     }
 })
 
-export const updatetask = createAsyncThunk("task/updatetask" , async( personId , {rejectWithValue,dispatch} )=>{
+export const updatetask = createAsyncThunk("task/updatetask" , async( userId , {rejectWithValue,dispatch} )=>{
     try{
-        const res = await axios.put(`/task/updatetask/${personId._id}`, personId , {
+        const res = await axios.put(`/task/updatetask/${userId._id}`, userId , {
             headers:{
                 token:localStorage.getItem("token")
             }
@@ -47,9 +47,9 @@ export const updatetask = createAsyncThunk("task/updatetask" , async( personId ,
     }
 })
 
-export const deletetask = createAsyncThunk("task/deletetask" , async( personId , {rejectWithValue,dispatch} )=>{
+export const deletetask = createAsyncThunk("task/deletetask" , async( userId , {rejectWithValue,dispatch} )=>{
     try{
-        const res = await axios.delete(`/task/deletetask/${personId._id}` , personId , {
+        const res = await axios.delete(`/task/deletetask/${userId._id}` , userId , {
             headers:{
                 token:localStorage.getItem("token")
             }
