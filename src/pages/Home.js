@@ -20,7 +20,7 @@ const Home = () => {
     const onSubmit = data => {console.log(data);
     dispatch(addtask(data))};
     console.log("errors" , errors);
-    useEffect(() => {dispatch(gettask())} , {dispatch})
+    useEffect(()=>{dispatch(gettask())},[dispatch])
 
     const handlechange = (e) => {
         setupdated({...taskList , [e.target.name]:[e.target.value]})
